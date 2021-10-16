@@ -1,25 +1,27 @@
 import Card from 'react-bootstrap/Card'
 import { BiEdit } from 'react-icons/bi';
 import { TiDeleteOutline } from 'react-icons/ti'
+import './card.css';
 
 
-
-export default function Cards() {
+export default function Cards(props) {
     return (
-        <Card border="primary" style={{ width: '18rem', marginTop: '100px' }}>
+        <Card border="primary" className="card_">
             <Card.Header>Information</Card.Header>
             <Card.Body>
-                <Card.Title>Subject</Card.Title>
+                <Card.Title>{props.subject.toLocaleUpperCase()}</Card.Title>
                 <div style={{ display: 'flex' }}>
                     <Card.Title>Subject:</Card.Title>
-                    <Card.Text>Maths</Card.Text>
+                    <Card.Text>{props.subject}</Card.Text>
                     <BiEdit size='25px' />
-                    <TiDeleteOutline size='25px' />
+                    <TiDeleteOutline size='25px' onClick={() => {
+                        props.onSelect(props.id)
+                    }} />
                 </div>
 
                 <div style={{ display: 'flex' }}>
                     <Card.Title>Topic: </Card.Title>
-                    <Card.Text>Integration</Card.Text>
+                    <Card.Text>{props.topic}</Card.Text>
                     <BiEdit size='25px' />
                     <TiDeleteOutline size='25px' />
 
@@ -27,9 +29,8 @@ export default function Cards() {
 
                 <div style={{ display: 'flex' }}>
                     <Card.Title>Notes:</Card.Title>
-                    <Card.Text>Properties of Indefinite Integral
-                        (i) ∫[f(x) + g(x)] dx = ∫f(x) dx + ∫g(x) dx
-                        (ii) For any real number k, ∫k f(x) dx = k∫f(x)dx.
+                    <Card.Text>{props.notes}
+
                         <BiEdit size='25px' />
                         <TiDeleteOutline size='25px' />
                     </Card.Text>
